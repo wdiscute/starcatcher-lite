@@ -90,6 +90,10 @@ dependencies {
     //wdutils
     jarJar(implementation("com.wdiscute:wdUtils:2.3-NEOFORGE-1.21.1"))
 
+    //aquaculture 2
+    implementation("maven.modrinth:aquaculture:2.7.21")
+
+
     //EMI
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
     //runtimeOnly "dev.emi:emi-neoforge:${emi_version}"

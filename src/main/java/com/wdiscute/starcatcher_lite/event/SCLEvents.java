@@ -3,12 +3,14 @@ package com.wdiscute.starcatcher_lite.event;
 import com.wdiscute.starcatcher_lite.StarcatcherLite;
 import com.wdiscute.starcatcher_lite.registry.*;
 import com.wdiscute.starcatcher_lite.data.network.*;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.entity.player.ItemFishedEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
@@ -27,6 +29,16 @@ public class SCLEvents
     public static void addCommand(RegisterCommandsEvent event)
     {
         SCCommands.register(event.getDispatcher(), event.getBuildContext());
+    }
+
+    @SubscribeEvent
+    public static void onEntityTick(EntityTickEvent.Post event)
+    {
+        if(event.getEntity() instanceof ServerPlayer sp && sp.fishing == null)
+        {
+            sp.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
+            sp.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
+        }
     }
 
     @SubscribeEvent

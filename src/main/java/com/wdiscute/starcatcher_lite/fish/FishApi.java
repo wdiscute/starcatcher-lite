@@ -31,5 +31,12 @@ public class FishApi
         {
             player.fishing.retrieve(player.getMainHandItem().is(Tags.Items.RODS) ? player.getMainHandItem() : player.getOffhandItem());
         }
+        else
+        {
+            player.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
+            player.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
+            player.fishing.discard();
+            player.fishing = null;
+        }
     }
 }

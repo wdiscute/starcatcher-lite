@@ -4,6 +4,7 @@
   "package": "com.wdiscute.starcatcher_lite.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AquacultureFishingHookMixin",
     "FishingHookMixin"
   ],
   "injectors": {
