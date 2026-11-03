@@ -93,6 +93,15 @@ dependencies {
     //aquaculture 2
     implementation("maven.modrinth:aquaculture:2.7.21")
 
+    //tide 2
+    //implementation("maven.modrinth:tide:1ki6UyqV")
+
+    //nether depths upgraded
+    implementation("maven.modrinth:nether-depths-upgrade:3.3")
+    runtimeOnly("maven.modrinth:geckolib:Grwn5rUB")
+
+
+
 
     //EMI
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"

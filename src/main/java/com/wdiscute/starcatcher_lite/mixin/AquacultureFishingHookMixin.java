@@ -24,8 +24,7 @@ public class AquacultureFishingHookMixin
                     target = "net/neoforged/neoforge/event/entity/player/ItemFishedEvent",
                     ordinal = 0),
             cancellable = true)
-    private void starcatcherLite$retrieve(ItemStack stack, CallbackInfoReturnable<Integer> cir,
-                                          @Local LocalRef<List<ItemStack>> listRef)
+    private void starcatcherLite$retrieve(ItemStack stack, CallbackInfoReturnable<Integer> cir, @Local(name = "lootEntries") LocalRef<List<ItemStack>> listRef)
     {
         FishingMinigameMixinHelper.handleRetrieve((FishingHook) (Object) this, listRef, cir);
     }
