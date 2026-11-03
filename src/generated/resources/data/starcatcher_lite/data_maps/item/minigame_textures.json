@@ -1,0 +1,12 @@
+{
+  "values": {
+    "minecraft:cod": {
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    }
+  }
+}

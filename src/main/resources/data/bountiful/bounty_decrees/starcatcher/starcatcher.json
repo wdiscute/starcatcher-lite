@@ -1,9 +1,0 @@
-{
-	"linkedProfessions": ["fisherman"],
-	"objectives": [
-		"starcatcher_objs"
-	],
-	"rewards": [
-		"_all_rews"
-	]
-}

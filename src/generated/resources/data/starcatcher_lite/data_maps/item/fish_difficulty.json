@@ -1,0 +1,60 @@
+{
+  "values": {
+    "minecraft:cod": {
+      "decay": 1.0,
+      "hp": 75,
+      "missPenalty": 5,
+      "speed": 7,
+      "sweetspots": [
+        {
+          "color_as_int": -15732736,
+          "hitbox_size_in_pixels": 22,
+          "is_flip": false,
+          "moving_rate": 0.0,
+          "reward": 15,
+          "sweetspot_type": "starcatcher_lite:normal",
+          "texture_path": "starcatcher_lite:textures/gui/minigame/spots/normal.png",
+          "vanishing_rate": 0.0
+        },
+        {
+          "color_as_int": -15732736,
+          "hitbox_size_in_pixels": 22,
+          "is_flip": false,
+          "moving_rate": 0.0,
+          "reward": 15,
+          "sweetspot_type": "starcatcher_lite:normal",
+          "texture_path": "starcatcher_lite:textures/gui/minigame/spots/normal.png",
+          "vanishing_rate": 0.0
+        }
+      ]
+    },
+    "minecraft:leather": {
+      "decay": 0.0,
+      "hp": 100,
+      "missPenalty": 0,
+      "speed": 10,
+      "sweetspots": [
+        {
+          "color_as_int": -15732736,
+          "hitbox_size_in_pixels": 22,
+          "is_flip": false,
+          "moving_rate": 0.0,
+          "reward": 30,
+          "sweetspot_type": "starcatcher_lite:normal",
+          "texture_path": "starcatcher_lite:textures/gui/minigame/spots/normal.png",
+          "vanishing_rate": 0.0
+        },
+        {
+          "color_as_int": -15732736,
+          "hitbox_size_in_pixels": 22,
+          "is_flip": false,
+          "moving_rate": 0.0,
+          "reward": 30,
+          "sweetspot_type": "starcatcher_lite:normal",
+          "texture_path": "starcatcher_lite:textures/gui/minigame/spots/normal.png",
+          "vanishing_rate": 0.0
+        }
+      ]
+    }
+  }
+}

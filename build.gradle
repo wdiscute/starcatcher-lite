@@ -87,23 +87,8 @@ repositories
         }
 
 dependencies {
-    //libtooltips
-    jarJar(implementation("maven.modrinth:libtooltips:2.3.2-NEOFORGE-1.21.1"))
-    //jarJar(implementation("com.wdiscute:libtooltips:2.3.1-NEOFORGE-1.21.1"))
-
     //wdutils
     jarJar(implementation("com.wdiscute:wdUtils:2.3-NEOFORGE-1.21.1"))
-
-    //selling bin
-    jarJar(implementation("maven.modrinth:wds-selling-bin:1.6-NEOFORGE-1.21.1"))
-
-    //tiny multiblock lib
-    jarJar(implementation("net.nikdo53:tiny-multiblock-lib-neoforge-1.21.1:4.0.1"))
-
-    //fancy tab sections
-    //jarJar(implementation("maven.modrinth:fancytabsections:6.2-NEOFORGE-1.21.1"))
-    jarJar(implementation("maven.modrinth:fancytabsections:6.2.1-NEOFORGE-1.21.1"))
-
 
     //EMI
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
@@ -112,101 +97,6 @@ dependencies {
     //JEI
     compileOnly "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
     runtimeOnly "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
-
-    //ftb teams
-    compileOnly files(".compatmods/ftb-teams-neoforge-2101.1.7.jar")
-    //runtimeOnly files(".compatmods/ftb-teams-neoforge-2101.1.7.jar")
-
-    compileOnly files(".compatmods/ftb-library-neoforge-2101.1.28.jar")
-    //runtimeOnly files(".compatmods/ftb-library-neoforge-2101.1.28.jar")
-
-    compileOnly files(".compatmods/architectury-13.0.8-neoforge.jar")
-    //runtimeOnly files(".compatmods/architectury-13.0.8-neoforge.jar")
-
-    //kambrik
-    //compileOnly "maven.modrinth:zfbCkvdZ:rCSmCZpX"
-    runtimeOnly "maven.modrinth:zfbCkvdZ:rCSmCZpX"
-
-    //bountiful
-    //compileOnly "maven.modrinth:BpwWFOVM:swTb6NU9"
-    runtimeOnly "maven.modrinth:BpwWFOVM:swTb6NU9"
-
-    //kotlin for forge
-    //compileOnly "maven.modrinth:BpwWFOVM:swTb6NU9"
-    runtimeOnly "maven.modrinth:ordsPcFz:uhJhCT7X"
-
-    //Serene Seasons
-    compileOnly files(".compatmods/SereneSeasons-neoforge-1.21.1-10.1.0.3.jar")
-    //compileOnly files(".compatmods/GlitchCore-neoforge-1.21.1-2.1.0.0.jar")
-    //runtimeOnly files(".compatmods/SereneSeasons-neoforge-1.21.1-10.1.0.3.jar")
-    //runtimeOnly files(".compatmods/GlitchCore-neoforge-1.21.1-2.1.0.0.jar")
-
-    //Ecliptic Seasons
-    compileOnly files(".compatmods/EclipticSeasons-1.21.1-neoforge-0.12.5-all.jar")
-    //runtimeOnly files(".compatmods/EclipticSeasons-1.21.1-neoforge-0.12.5-all.jar")
-
-    //terrafirmacraft for seasons
-    //compileOnly files(".compatmods/Patchouli-1.21.1-92-NEOFORGE.jar")
-    compileOnly files(".compatmods/TerraFirmaCraft-NeoForge-1.21.1-4.0.13-beta.jar")
-    //runtimeOnly files(".compatmods/Patchouli-1.21.1-92-NEOFORGE.jar")
-    //runtimeOnly files(".compatmods/TerraFirmaCraft-NeoForge-1.21.1-4.0.13-beta.jar")
-
-    //distant horizons
-    //compileOnly files(".compatmods/DistantHorizons-2.3.6-b-1.21.1-fabric-neoforge.jar")
-    //runtimeOnly files(".compatmods/DistantHorizons-2.3.6-b-1.21.1-fabric-neoforge.jar")
-
-    //runtimeOnly files(".compatmods/ftb-teams-neoforge-2101.1.7.jar")
-    //runtimeOnly files(".compatmods/ftb-library-neoforge-2101.1.28.jar")
-    //runtimeOnly files(".compatmods/architectury-13.0.8-neoforge.jar")
-
-    //quality foods compat
-    compileOnly("maven.modrinth:quality-food:vLFBpk1n")
-    //runtimeOnly("maven.modrinth:quality-food:vLFBpk1n")
-
-    //shaders
-    compileOnly "curse.maven:irisshaders-455508:6661598"
-    //runtimeOnly "curse.maven:sodium-394468:6382651"
-    //runtimeOnly "curse.maven:irisshaders-455508:6661598"
-
-    //carry on
-    //implementation "curse.maven:carry-on-274259:7393892"
-
-    //Reliquified Artifacts (Angler's Hat compat)
-    //compileOnly "maven.modrinth:reliquified-artifacts:y32QSEHL"
-    //runtimeOnly "maven.modrinth:reliquified-artifacts:y32QSEHL"
-
-    //artifacts (Angler's Hat compat)
-    //compileOnly "maven.modrinth:artifacts:rGPw090r"
-    //runtimeOnly "maven.modrinth:artifacts:rGPw090r"
-
-    //relics (Angler's Hat compat)
-    compileOnly "maven.modrinth:relics-mod:QFPRw8EU"
-    //runtimeOnly "maven.modrinth:relics-mod:QFPRw8EU"
-
-    //curios (check modifiers in curio slots)
-    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
-
-    //octolib because jarinjar must be illegal or something
-    //compileOnly "maven.modrinth:octo-lib:AbiyvpxR"
-    //runtimeOnly "maven.modrinth:octo-lib:AbiyvpxR"
-
-    //architectury for the dependency of the dependency of the dependency of anglers hat
-    //compileOnly "maven.modrinth:architectury-api:ZxYGwlk0"
-    //runtimeOnly "maven.modrinth:architectury-api:ZxYGwlk0"
-
-    //pipez
-    //runtimeOnly "maven.modrinth:pipez:z20ZR1YE"
-
-    //sable (Sable's compat)
-    compileOnly files(".compatmods/sable-neoforge-1.21.1-1.0.6.jar")
-    api "dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:1.4.2"
-    //runtimeOnly files(".compatmods/sable-neoforge-1.21.1-1.0.6.jar")
-
-    //little joys
-    compileOnly("maven.modrinth:little-joys:21.1.18+neoforge-1.21.1")
-    //runtimeOnly("maven.modrinth:little-joys:21.1.18+neoforge-1.21.1")
-
 
     implementation "curse.maven:sodium-394468:6382651"
     implementation "curse.maven:irisshaders-455508:6661598"
