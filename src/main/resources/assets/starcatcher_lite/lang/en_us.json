@@ -1,0 +1,23 @@
+{
+  "key.category.starcatcher_lite.starcatcher_lite": "Starcatcher",
+  "key.starcatcher_lite.minigame_hit": "Minigame Hit",
+
+  "starcatcher_lite.configuration.ui_settings": "§3!!! [UI Moving & Scale] !!!",
+
+  "starcatcher_lite.configuration.minigame_x_offset": "Minigame X Offset",
+  "starcatcher_lite.configuration.minigame_y_offset": "Minigame Y Offset",
+  "starcatcher_lite.configuration.minigame_scale": "Minigame Scale",
+
+  "starcatcher_lite.configuration.debug": "Debug Minigame Info",
+
+  "starcatcher_lite.configuration.hit_delay" : "Minigame Hit Delay",
+  "starcatcher_lite.configuration.enable_hit_sounds" : "Sweet-spot Hit Sounds",
+  "starcatcher_lite.configuration.enable_miss_sound" : "Minigame miss Sound",
+
+  "starcatcher_lite.configuration.vanishing_rate_multiplier" : "Global Vanishing Rate Multiplier",
+  "starcatcher_lite.configuration.moving_speed_multiplier" : "Global Moving Speed Multiplier",
+  "starcatcher_lite.configuration.penalty_multiplier" : "Global Penalty Multiplier",
+  "starcatcher_lite.configuration.decay_multiplier" : "Global Decay Multiplier",
+  "starcatcher_lite.configuration.hp_multiplier" : "Global HP Multiplier",
+  "starcatcher_lite.configuration.handle_speed_multiplier" : "Global Handle Speed Multiplier"
+}
