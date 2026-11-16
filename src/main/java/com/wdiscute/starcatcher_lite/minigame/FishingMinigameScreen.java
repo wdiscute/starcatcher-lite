@@ -85,7 +85,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
 
     public static void start(ItemStack itemStack, Difficulty difficulty)
     {
-        Minecraft.getInstance().setScreen(new FishingMinigameScreen(itemStack, difficulty));
+        Minecraft.getInstance().setScreenAndShow(new FishingMinigameScreen(itemStack, difficulty));
     }
 
     public FishingMinigameScreen(ItemStack itemStack, Difficulty difficulty)
@@ -567,7 +567,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     public void onClose()
     {
         ClientPacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(false));
-        this.minecraft.popGuiLayer();
+        super.onClose();
     }
 
     public void addParticles(float posInDegrees, int count, int color)

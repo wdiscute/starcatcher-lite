@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Pseudo
-@Mixin(targets = "com.teammetallurgy.aquaculture.entity.AquaFishingBobberEntity", remap = false)
+@Mixin(targets = "com.teammetallurgy.aquaculture.entity.AquaFishingHookEntity", remap = false)
 public class AquacultureFishingHookMixin
 {
     @Inject(method = "retrieve",

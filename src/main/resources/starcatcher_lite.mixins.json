@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AquacultureFishingHookMixin",
-    "FishingHookMixin",
-    "NDULavaFishingHookMixin"
+    "FishingHookMixin"
   ],
   "injectors": {
     "defaultRequire": 1

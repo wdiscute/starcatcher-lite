@@ -5,6 +5,7 @@ import com.wdiscute.starcatcher_lite.registry.*;
 import com.wdiscute.starcatcher_lite.data.network.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.*;
@@ -50,7 +51,7 @@ public class SCLEvents
     @SubscribeEvent
     public static void modifyDefaultAttributes(EntityAttributeModificationEvent event)
     {
-        SCLAttributes.REGISTRY.getEntries().forEach(o -> event.add(EntityType.PLAYER, o, 1.0));
+        SCLAttributes.REGISTRY.getEntries().forEach(o -> event.add(EntityTypes.PLAYER, o, 1.0));
     }
 
     @SubscribeEvent

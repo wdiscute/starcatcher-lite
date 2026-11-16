@@ -11,7 +11,7 @@ modId="starcatcher_lite"
 version="${mod_version}"
 displayName="${mod_name}"
 displayURL="http://curseforge.com/minecraft/mc-mods/starcatcher_lite"
-logoFile = "icon.png"
+iconFile = "icon.png"
 mod_authors="${mod_authors}" #optional
 description='''Starcatcher, now with 99% less content, but keeping the minigame!
 
