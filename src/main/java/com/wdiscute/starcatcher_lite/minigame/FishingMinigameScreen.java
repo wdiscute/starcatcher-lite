@@ -8,7 +8,7 @@ import com.wdiscute.starcatcher_lite.*;
 import com.wdiscute.starcatcher_lite.fish.Difficulty;
 import com.wdiscute.starcatcher_lite.fish.Textures;
 import com.wdiscute.starcatcher_lite.registry.*;
-import com.wdiscute.starcatcher_lite.data.network.SBFishingCompletedPayload;
+import com.wdiscute.starcatcher_lite.data.network.SCLSBFishingCompletedPayload;
 import com.wdiscute.utils.ScreenUtils;
 import com.wdiscute.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -75,6 +75,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     List<HitFakeParticle> hitParticles = new ArrayList<>();
 
     // Nikdo53 fields, these are mine don't steal them
+    // Starcatcher Lite comment - i dont know why these are needed so they are staying
     public final int holdingDelay = 6;
     public int holdingTicks = 0;
     protected boolean isHoldingKey = false;
@@ -96,14 +97,19 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
 
         handToSwing = Minecraft.getInstance().player.getMainHandItem().is(Tags.Items.RODS) ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
 
-        tank = Textures.DEFAULT.tank();
-        rod = Textures.DEFAULT.rod();
-        handle = Textures.DEFAULT.handle();
-        buttons = Textures.DEFAULT.buttons();
-        treasure = Textures.DEFAULT.treasure();
-        wheels = Textures.DEFAULT.wheels();
+        Textures textures = itemStack.getItem().builtInRegistryHolder().getData(SCLDataMaps.MINIGAME_TEXTURES);
 
-        hitDelay = SCConfig.HIT_DELAY.get().floatValue();
+        if(textures == null)
+            textures = Textures.DEFAULT;
+
+        tank = textures.tank();
+        rod = textures.rod();
+        handle = textures.handle();
+        buttons = textures.buttons();
+        treasure = textures.treasure();
+        wheels = textures.wheels();
+
+        hitDelay = SCLConfig.HIT_DELAY.get().floatValue();
 
         this.difficulty = difficulty;
 
@@ -113,11 +119,11 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         Player player = Minecraft.getInstance().player;
 
         //difficulty
-        this.handleSpeed = (float) (difficulty.speed() * player.getAttributeValue(SCAttributes.HANDLE_ROTATION_SPEED_MULTIPLIER) * SCConfig.HANDLE_SPEED_MULTIPLIER.get());
-        this.handleBaseSpeed = (float) (difficulty.speed() * player.getAttributeValue(SCAttributes.HANDLE_ROTATION_SPEED_MULTIPLIER) * SCConfig.HANDLE_SPEED_MULTIPLIER.get());
-        this.penalty = (int) (difficulty.penalty() * player.getAttributeValue(SCAttributes.PENALTY_MULTIPLIER) * SCConfig.PENALTY_MULTIPLIER.get());
-        this.decay = (float) (difficulty.decay() * player.getAttributeValue(SCAttributes.BASE_DECAY_MULTIPLIER) * SCConfig.DECAY_RATE_MULTIPLIER.get());
-        this.hp = (int) (difficulty.hp() * player.getAttributeValue(SCAttributes.REQUIRED_SCORE_MULTIPLIER) * SCConfig.HP_RATE_MULTIPLIER.get());
+        this.handleSpeed = (float) (difficulty.speed() * player.getAttributeValue(SCLAttributes.HANDLE_ROTATION_SPEED_MULTIPLIER) * SCLConfig.HANDLE_SPEED_MULTIPLIER.get());
+        this.handleBaseSpeed = (float) (difficulty.speed() * player.getAttributeValue(SCLAttributes.HANDLE_ROTATION_SPEED_MULTIPLIER) * SCLConfig.HANDLE_SPEED_MULTIPLIER.get());
+        this.penalty = (int) (difficulty.penalty() * player.getAttributeValue(SCLAttributes.PENALTY_MULTIPLIER) * SCLConfig.PENALTY_MULTIPLIER.get());
+        this.decay = (float) (difficulty.decay() * player.getAttributeValue(SCLAttributes.BASE_DECAY_MULTIPLIER) * SCLConfig.DECAY_RATE_MULTIPLIER.get());
+        this.hp = (int) (difficulty.hp() * player.getAttributeValue(SCLAttributes.REQUIRED_SCORE_MULTIPLIER) * SCLConfig.HP_RATE_MULTIPLIER.get());
 
         tick();
 
@@ -177,9 +183,9 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         poseStack.pushPose();
         poseStack.translate(width >> 1, height >> 1, 0);
 
-        poseStack.translate(SCConfig.MINIGAME_X_OFFSET.get(), SCConfig.MINIGAME_Y_OFFSET.get(), 0);
+        poseStack.translate(SCLConfig.MINIGAME_X_OFFSET.get(), SCLConfig.MINIGAME_Y_OFFSET.get(), 0);
 
-        poseStack.scale(((float) SCConfig.MINIGAME_RENDER_SCALE.getAsDouble()), ((float) SCConfig.MINIGAME_RENDER_SCALE.getAsDouble()), 1);
+        poseStack.scale(((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()), ((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()), 1);
 
         poseStack.translate(-width >> 1, -height >> 1, 0);
 
@@ -193,7 +199,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         wheels.render(g, centerX - 32, centerY - 32, 0, 0, 64, 64);
 
         //render spacebar
-        boolean bigBar = font.width(SCKeymappings.MINIGAME_HIT.getKey().getDisplayName().getString()) > 18;
+        boolean bigBar = font.width(SCLKeymappings.MINIGAME_HIT.getKey().getDisplayName().getString()) > 18;
 
         int yOffset = (isHoldingKey ? 16 : 0) + (bigBar ? 0 : 32);
         buttons.render(g, centerX - 24, centerY + 40,
@@ -201,7 +207,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
                 48, 16);
 
         //render spacebar keybind name
-        ScreenUtils.centeredText(g, font, SCKeymappings.MINIGAME_HIT.getKey().getDisplayName(),
+        ScreenUtils.centeredText(g, font, SCLKeymappings.MINIGAME_HIT.getKey().getDisplayName(),
                 centerX, centerY + 42 + (isHoldingKey ? 2 : 0),
                 0xff546170, false);
 
@@ -248,7 +254,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
 
         poseStack.popPose();
 
-        if (SCConfig.DEBUG_MINIGAME.get())
+        if (SCLConfig.DEBUG_MINIGAME.get())
         {
             int yOffsetASS = 10;
             ScreenUtils.text(g, font,
@@ -372,7 +378,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     @Override
     public boolean keyReleased(int keyCode, int scanCode, int keyModifiers)
     {
-        if (keyCode == SCKeymappings.MINIGAME_HIT.getKey().getValue())
+        if (keyCode == SCLKeymappings.MINIGAME_HIT.getKey().getValue())
         {
             isHoldingKey = false;
             holdingTicks = 0;
@@ -402,7 +408,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     {
         //closes when pressing E unless keybind is set to E
         InputConstants.Key mouseKey = InputConstants.getKey(keyCode, scanCode);
-        if (this.minecraft.options.keyInventory.isActiveAndMatches(mouseKey) && !SCKeymappings.MINIGAME_HIT.getKey().equals(mouseKey))
+        if (this.minecraft.options.keyInventory.isActiveAndMatches(mouseKey) && !SCLKeymappings.MINIGAME_HIT.getKey().equals(mouseKey))
         {
             //play failed sound
             this.onClose();
@@ -410,7 +416,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         }
 
         //hit input
-        if (SCKeymappings.MINIGAME_HIT.isActiveAndMatches(mouseKey))
+        if (SCLKeymappings.MINIGAME_HIT.isActiveAndMatches(mouseKey))
         {
             if (!isHoldingKey) inputPressed();
 
@@ -454,7 +460,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
             perfectCatch = false;
             consecutiveHits = 0;
 
-            if (SCConfig.ENABLE_MISS_SOUND.get())
+            if (SCLConfig.ENABLE_MISS_SOUND.get())
                 level.playLocalSound(pos.x, pos.y, pos.z, SoundEvents.COMPARATOR_CLICK, SoundSource.BLOCKS, 1, 1, false);
 
             activeSweetSpots.forEach(ass -> ass.behaviour.onMiss(this, ass));
@@ -554,7 +560,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
             if (progressSmooth > hp)
             {
                 //if completed treasure minigame, or is a perfect catch with the mossy hook
-                PacketDistributor.sendToServer(new SBFishingCompletedPayload(true));
+                PacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(true));
                 this.onClose();
             }
         }
@@ -565,7 +571,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     @Override
     public void onClose()
     {
-        PacketDistributor.sendToServer(new SBFishingCompletedPayload(false));
+        PacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(false));
         this.minecraft.popGuiLayer();
     }
 

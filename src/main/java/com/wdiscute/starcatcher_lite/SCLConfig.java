@@ -2,7 +2,7 @@ package com.wdiscute.starcatcher_lite;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class SCConfig
+public class SCLConfig
 {
     private static final ModConfigSpec.Builder BUILDER_CLIENT = new ModConfigSpec.Builder();
 

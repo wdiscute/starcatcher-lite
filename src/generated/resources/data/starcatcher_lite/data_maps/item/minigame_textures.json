@@ -1,6 +1,160 @@
 {
   "values": {
-    "minecraft:cod": {
+    "minecraft:blaze_powder": {
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:blazefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:bonefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:eyeball_fish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:fortress_grouper": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:glowdine": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:lava_pufferfish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:magmacubefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:obsidianfish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:searing_cod": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:soulsucker": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
+      "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
+      "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
+      "rod": "starcatcher_lite:textures/gui/minigame/rod.png",
+      "tank": "starcatcher_lite:textures/gui/minigame/tanks/nether.png",
+      "treasure": "starcatcher_lite:textures/gui/minigame/treasure.png",
+      "wheels": "starcatcher_lite:textures/gui/minigame/wheels.png"
+    },
+    "netherdepthsupgrade:wither_bonefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "netherdepthsupgrade"
+        }
+      ],
       "buttons": "starcatcher_lite:textures/gui/minigame/buttons.png",
       "handle": "starcatcher_lite:textures/gui/minigame/handle.png",
       "rod": "starcatcher_lite:textures/gui/minigame/rod.png",

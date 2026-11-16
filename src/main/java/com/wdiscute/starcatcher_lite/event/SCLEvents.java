@@ -28,7 +28,7 @@ public class SCLEvents
     @SubscribeEvent
     public static void addCommand(RegisterCommandsEvent event)
     {
-        SCCommands.register(event.getDispatcher(), event.getBuildContext());
+        SCLCommands.register(event.getDispatcher(), event.getBuildContext());
     }
 
     @SubscribeEvent
@@ -36,8 +36,8 @@ public class SCLEvents
     {
         if(event.getEntity() instanceof ServerPlayer sp && sp.fishing == null)
         {
-            sp.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
-            sp.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
+            sp.removeData(SCLDataAttachments.ITEMS_BEING_FISHED);
+            sp.removeData(SCLDataAttachments.IN_FISHING_MINIGAME);
         }
     }
 
@@ -50,14 +50,14 @@ public class SCLEvents
     @SubscribeEvent
     public static void modifyDefaultAttributes(EntityAttributeModificationEvent event)
     {
-        SCAttributes.REGISTRY.getEntries().forEach(o -> event.add(EntityType.PLAYER, o, 1.0));
+        SCLAttributes.REGISTRY.getEntries().forEach(o -> event.add(EntityType.PLAYER, o, 1.0));
     }
 
     @SubscribeEvent
     public static void registerDataMaps(RegisterDataMapTypesEvent event)
     {
-        event.register(SCDataMaps.FISH_DIFFICULTY);
-        event.register(SCDataMaps.MINIGAME_TEXTURES);
+        event.register(SCLDataMaps.FISH_DIFFICULTY);
+        event.register(SCLDataMaps.MINIGAME_TEXTURES);
     }
 
     @SubscribeEvent
@@ -65,15 +65,15 @@ public class SCLEvents
     {
         final PayloadRegistrar registrar = event.registrar("1");
         registrar.playToClient(
-                CBFishingStartedPayload.TYPE,
-                CBFishingStartedPayload.STREAM_CODEC,
-                CBFishingStartedPayload::handle
+                SCLCBFishingStartedPayload.TYPE,
+                SCLCBFishingStartedPayload.STREAM_CODEC,
+                SCLCBFishingStartedPayload::handle
         );
 
         registrar.playToServer(
-                SBFishingCompletedPayload.TYPE,
-                SBFishingCompletedPayload.STREAM_CODEC,
-                SBFishingCompletedPayload::handle
+                SCLSBFishingCompletedPayload.TYPE,
+                SCLSBFishingCompletedPayload.STREAM_CODEC,
+                SCLSBFishingCompletedPayload::handle
         );
     }
 }

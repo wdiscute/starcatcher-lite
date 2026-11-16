@@ -1,7 +1,6 @@
 package com.wdiscute.starcatcher_lite;
 
-import com.mojang.logging.LogUtils;
-import com.wdiscute.starcatcher_lite.registry.SCSweetSpotsBehaviour;
+import com.wdiscute.starcatcher_lite.registry.SCLSweetSpotsBehaviour;
 import com.wdiscute.starcatcher_lite.registry.sweetspotbehaviour.AbstractSweetSpotBehaviour;
 import com.wdiscute.starcatcher_lite.registry.*;
 import com.wdiscute.utils.Utils;
@@ -16,9 +15,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.registries.RegistryBuilder;
-import org.slf4j.Logger;
 
-import java.text.DecimalFormat;
 import java.util.function.Supplier;
 
 @Mod(StarcatcherLite.MOD_ID)
@@ -43,12 +40,12 @@ public class StarcatcherLite
 
     public StarcatcherLite(IEventBus modEventBus, ModContainer modContainer)
     {
-        SCDataAttachments.register(modEventBus);
-        SCSweetSpotsBehaviour.register(modEventBus);
-        SCAttributes.register(modEventBus);
+        SCLDataAttachments.register(modEventBus);
+        SCLSweetSpotsBehaviour.register(modEventBus);
+        SCLAttributes.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.CLIENT, SCConfig.SPEC);
-        modContainer.registerConfig(ModConfig.Type.SERVER, SCConfig.SPEC_SERVER);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, SCLConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, SCLConfig.SPEC_SERVER);
     }
 
     @Mod(value = StarcatcherLite.MOD_ID, dist = Dist.CLIENT)

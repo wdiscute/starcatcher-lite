@@ -1,9 +1,9 @@
 package com.wdiscute.starcatcher_lite.minigame;
 
 import com.mojang.logging.LogUtils;
-import com.wdiscute.starcatcher_lite.SCConfig;
+import com.wdiscute.starcatcher_lite.SCLConfig;
 import com.wdiscute.starcatcher_lite.StarcatcherLite;
-import com.wdiscute.starcatcher_lite.registry.SCAttributes;
+import com.wdiscute.starcatcher_lite.registry.SCLAttributes;
 import com.wdiscute.starcatcher_lite.fish.Difficulty;
 import com.wdiscute.starcatcher_lite.registry.sweetspotbehaviour.AbstractSweetSpotBehaviour;
 import com.wdiscute.utils.ScreenUtils;
@@ -68,8 +68,8 @@ public class ActiveSweetSpot
         this.particleColor = ss.particleColor();
 
         this.isFlip = ss.isFlip();
-        this.vanishingRate = (float) (ss.vanishingRate() * Minecraft.getInstance().player.getAttributeValue(SCAttributes.VANISHING_RATE_MULTIPLIER) * SCConfig.VANISHING_RATE_MULTIPLIER.get());
-        this.movingRate = (float) (ss.movingRate() * SCConfig.MOVING_SPEED_MULTIPLIER.get());
+        this.vanishingRate = (float) (ss.vanishingRate() * Minecraft.getInstance().player.getAttributeValue(SCLAttributes.VANISHING_RATE_MULTIPLIER) * SCLConfig.VANISHING_RATE_MULTIPLIER.get());
+        this.movingRate = (float) (ss.movingRate() * SCLConfig.MOVING_SPEED_MULTIPLIER.get());
 
         currentRotation = -1;
 

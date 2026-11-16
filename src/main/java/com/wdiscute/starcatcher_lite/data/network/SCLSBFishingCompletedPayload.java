@@ -9,14 +9,14 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record SBFishingCompletedPayload(boolean completed) implements CustomPacketPayload
+public record SCLSBFishingCompletedPayload(boolean completed) implements CustomPacketPayload
 {
-    public static final Type<SBFishingCompletedPayload> TYPE = new Type<>(StarcatcherLite.rl("fishing_completed"));
+    public static final Type<SCLSBFishingCompletedPayload> TYPE = new Type<>(StarcatcherLite.rl("fishing_completed"));
 
-    public static final StreamCodec<ByteBuf, SBFishingCompletedPayload> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<ByteBuf, SCLSBFishingCompletedPayload> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.BOOL,
-            SBFishingCompletedPayload::completed,
-            SBFishingCompletedPayload::new
+            SCLSBFishingCompletedPayload::completed,
+            SCLSBFishingCompletedPayload::new
     );
 
     @Override

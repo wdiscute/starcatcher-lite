@@ -1,7 +1,7 @@
 package com.wdiscute.starcatcher_lite.fish;
 
-import com.wdiscute.starcatcher_lite.registry.SCDataAttachments;
-import com.wdiscute.starcatcher_lite.registry.SCDataMaps;
+import com.wdiscute.starcatcher_lite.registry.SCLDataAttachments;
+import com.wdiscute.starcatcher_lite.registry.SCLDataMaps;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.Tags;
@@ -10,20 +10,20 @@ public class FishApi
 {
     public static Difficulty getDifficultyForItem(Item item)
     {
-        return SCDataMaps.getOrDefault(item, SCDataMaps.FISH_DIFFICULTY, Difficulty.EASY);
+        return SCLDataMaps.getOrDefault(item, SCLDataMaps.FISH_DIFFICULTY, Difficulty.EASY);
     }
 
     public static Textures getTexturesForItem(Item item)
     {
-        return SCDataMaps.getOrDefault(item, SCDataMaps.MINIGAME_TEXTURES, Textures.DEFAULT);
+        return SCLDataMaps.getOrDefault(item, SCLDataMaps.MINIGAME_TEXTURES, Textures.DEFAULT);
     }
 
     public static void playerCompletedMinigame(ServerPlayer player, boolean completed)
     {
         if(player.fishing == null)
         {
-            player.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
-            player.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
+            player.removeData(SCLDataAttachments.ITEMS_BEING_FISHED);
+            player.removeData(SCLDataAttachments.IN_FISHING_MINIGAME);
             return;
         }
 
@@ -33,8 +33,8 @@ public class FishApi
         }
         else
         {
-            player.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
-            player.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
+            player.removeData(SCLDataAttachments.ITEMS_BEING_FISHED);
+            player.removeData(SCLDataAttachments.IN_FISHING_MINIGAME);
             player.fishing.discard();
             player.fishing = null;
         }

@@ -24,10 +24,6 @@ Redeix - Ice tank texture
 [[mixins]]
 config="starcatcher_lite.mixins.json"
 
-# In neoforge.mods.toml:
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
-
 [[dependencies.starcatcher_lite]] #optional
 modId="neoforge" #mandatory
 type="required" #mandatory

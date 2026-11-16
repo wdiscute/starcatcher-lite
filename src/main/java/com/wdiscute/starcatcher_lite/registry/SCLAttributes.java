@@ -8,7 +8,7 @@ import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public interface SCAttributes
+public interface SCLAttributes
 {
     DeferredRegister<Attribute> REGISTRY = DeferredRegister.create(Registries.ATTRIBUTE, StarcatcherLite.MOD_ID);
 

@@ -8,7 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 @EventBusSubscriber(modid = StarcatcherLite.MOD_ID)
-public class DGSCDataGenerators
+public class SCLDGDataGenerators
 {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event)
@@ -18,6 +18,6 @@ public class DGSCDataGenerators
         PackOutput output = gen.getPackOutput();
 
         //data maps
-        gen.addProvider(event.includeServer(), new DGSCDataMapsProvider(output, event.getLookupProvider()));
+        gen.addProvider(event.includeServer(), new SCLDGDataMapsProvider(output, event.getLookupProvider()));
     }
 }

@@ -1,6 +1,6 @@
 package com.wdiscute.starcatcher_lite.minigame;
 
-import com.wdiscute.starcatcher_lite.SCConfig;
+import com.wdiscute.starcatcher_lite.SCLConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
@@ -30,9 +30,9 @@ public class KonamiDetector
 
             if (progress == CODE.length)
             {
-                SCConfig.DEBUG_MINIGAME.set(!SCConfig.DEBUG_MINIGAME.get());
-                SCConfig.DEBUG_MINIGAME.save();
-                if (SCConfig.DEBUG_MINIGAME.get())
+                SCLConfig.DEBUG_MINIGAME.set(!SCLConfig.DEBUG_MINIGAME.get());
+                SCLConfig.DEBUG_MINIGAME.save();
+                if (SCLConfig.DEBUG_MINIGAME.get())
                     Minecraft.getInstance().player.displayClientMessage(Component.literal("hackermans mode activated"), true);
                 else
                     Minecraft.getInstance().player.displayClientMessage(Component.literal("hackermans mode deactivated"), true);

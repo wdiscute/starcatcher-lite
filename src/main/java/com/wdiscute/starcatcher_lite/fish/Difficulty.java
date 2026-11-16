@@ -3,7 +3,7 @@ package com.wdiscute.starcatcher_lite.fish;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.wdiscute.starcatcher_lite.StarcatcherLite;
-import com.wdiscute.starcatcher_lite.registry.SCSweetSpotsBehaviour;
+import com.wdiscute.starcatcher_lite.registry.SCLSweetSpotsBehaviour;
 import com.wdiscute.utils.ExtraComposites;
 import com.wdiscute.utils.ScreenUtils;
 import net.minecraft.network.FriendlyByteBuf;
@@ -94,7 +94,7 @@ public record Difficulty(
         }
 
         public static SweetSpot TRASH = new SweetSpot(
-                SCSweetSpotsBehaviour.NORMAL,
+                SCLSweetSpotsBehaviour.NORMAL,
                 RL_NORMAL,
                 22,
                 30,
@@ -102,7 +102,7 @@ public record Difficulty(
         );
 
         public static SweetSpot NORMAL = new SweetSpot(
-                SCSweetSpotsBehaviour.NORMAL,
+                SCLSweetSpotsBehaviour.NORMAL,
                 RL_NORMAL,
                 22,
                 15,
@@ -110,7 +110,7 @@ public record Difficulty(
         );
 
         public static SweetSpot THIN = new SweetSpot(
-                SCSweetSpotsBehaviour.NORMAL,
+                SCLSweetSpotsBehaviour.NORMAL,
                 RL_THIN,
                 15,
                 20,

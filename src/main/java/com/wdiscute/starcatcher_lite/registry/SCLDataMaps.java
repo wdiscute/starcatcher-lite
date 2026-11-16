@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
-public interface SCDataMaps
+public interface SCLDataMaps
 {
     DataMapType<Item, Difficulty> FISH_DIFFICULTY = DataMapType.builder(
                     StarcatcherLite.rl("fish_difficulty"), Registries.ITEM, Difficulty.CODEC)

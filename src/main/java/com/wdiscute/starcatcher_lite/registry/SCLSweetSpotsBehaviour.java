@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public interface SCSweetSpotsBehaviour
+public interface SCLSweetSpotsBehaviour
 {
     DeferredRegister<Supplier<? extends AbstractSweetSpotBehaviour>> REGISTRY =
             DeferredRegister.create(StarcatcherLite.SWEETSPOT_BEHAVIOUR_REGISTRY, StarcatcherLite.MOD_ID);

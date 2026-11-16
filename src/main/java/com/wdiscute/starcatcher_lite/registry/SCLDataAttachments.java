@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import java.util.List;
 import java.util.function.Supplier;
 
-public interface SCDataAttachments
+public interface SCLDataAttachments
 {
     DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(
             NeoForgeRegistries.ATTACHMENT_TYPES, StarcatcherLite.MOD_ID);

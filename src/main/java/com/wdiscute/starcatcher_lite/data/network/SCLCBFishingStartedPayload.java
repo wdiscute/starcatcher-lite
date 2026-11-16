@@ -9,14 +9,14 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record CBFishingStartedPayload(ItemStack fish, Difficulty dif) implements CustomPacketPayload
+public record SCLCBFishingStartedPayload(ItemStack fish, Difficulty dif) implements CustomPacketPayload
 {
-    public static final Type<CBFishingStartedPayload> TYPE = new Type<>(StarcatcherLite.rl("fishing_started"));
+    public static final Type<SCLCBFishingStartedPayload> TYPE = new Type<>(StarcatcherLite.rl("fishing_started"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, CBFishingStartedPayload> STREAM_CODEC = StreamCodec.composite(
-            ItemStack.STREAM_CODEC, CBFishingStartedPayload::fish,
-            Difficulty.STREAM_CODEC, CBFishingStartedPayload::dif,
-            CBFishingStartedPayload::new
+    public static final StreamCodec<RegistryFriendlyByteBuf, SCLCBFishingStartedPayload> STREAM_CODEC = StreamCodec.composite(
+            ItemStack.STREAM_CODEC, SCLCBFishingStartedPayload::fish,
+            Difficulty.STREAM_CODEC, SCLCBFishingStartedPayload::dif,
+            SCLCBFishingStartedPayload::new
     );
 
     @Override

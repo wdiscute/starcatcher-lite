@@ -1,8 +1,8 @@
 package com.wdiscute.starcatcher_lite.fish;
 
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
-import com.wdiscute.starcatcher_lite.data.network.CBFishingStartedPayload;
-import com.wdiscute.starcatcher_lite.registry.SCDataAttachments;
+import com.wdiscute.starcatcher_lite.data.network.SCLCBFishingStartedPayload;
+import com.wdiscute.starcatcher_lite.registry.SCLDataAttachments;
 import com.wdiscute.utils.MaybeStack;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +18,7 @@ public class FishingMinigameMixinHelper
     public static boolean shouldFreezeBite(FishingHook hook)
     {
         return hook.getPlayerOwner() instanceof ServerPlayer sp
-               && sp.getData(SCDataAttachments.IN_FISHING_MINIGAME);
+               && sp.getData(SCLDataAttachments.IN_FISHING_MINIGAME);
     }
 
     public static void handleRetrieve(FishingHook hook, LocalRef<List<ItemStack>> listRef, CallbackInfoReturnable<Integer> cir)
@@ -27,12 +27,12 @@ public class FishingMinigameMixinHelper
         if (player instanceof ServerPlayer sp)
         {
             //if in fishing minigame
-            if (sp.getData(SCDataAttachments.IN_FISHING_MINIGAME))
+            if (sp.getData(SCLDataAttachments.IN_FISHING_MINIGAME))
             {
-                listRef.set(sp.getData(SCDataAttachments.ITEMS_BEING_FISHED).stream().map(MaybeStack::toStack).toList());
+                listRef.set(sp.getData(SCLDataAttachments.ITEMS_BEING_FISHED).stream().map(MaybeStack::toStack).toList());
 
-                sp.removeData(SCDataAttachments.IN_FISHING_MINIGAME);
-                sp.removeData(SCDataAttachments.ITEMS_BEING_FISHED);
+                sp.removeData(SCLDataAttachments.IN_FISHING_MINIGAME);
+                sp.removeData(SCLDataAttachments.ITEMS_BEING_FISHED);
             }
             else
             {
@@ -46,11 +46,11 @@ public class FishingMinigameMixinHelper
 
                 //start minigame
                 PacketDistributor.sendToPlayer(sp,
-                        new CBFishingStartedPayload(fishStack, FishApi.getDifficultyForItem(fishStack.getItem())));
+                        new SCLCBFishingStartedPayload(fishStack, FishApi.getDifficultyForItem(fishStack.getItem())));
 
                 //set data on player
-                sp.setData(SCDataAttachments.IN_FISHING_MINIGAME, true);
-                sp.setData(SCDataAttachments.ITEMS_BEING_FISHED, listRef.get().stream().map(MaybeStack::new).toList());
+                sp.setData(SCLDataAttachments.IN_FISHING_MINIGAME, true);
+                sp.setData(SCLDataAttachments.ITEMS_BEING_FISHED, listRef.get().stream().map(MaybeStack::new).toList());
 
                 cir.setReturnValue(0);
                 cir.cancel();
