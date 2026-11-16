@@ -47,7 +47,7 @@ public class ActiveSweetSpot
     public ActiveSweetSpot(FishingMinigameScreen instance, Difficulty.SweetSpot ss)
     {
         //get sweet spot type from rl
-        Optional<Supplier<? extends AbstractSweetSpotBehaviour>> behaviour = Minecraft.getInstance().level.registryAccess().registryOrThrow(StarcatcherLite.SWEETSPOT_BEHAVIOUR).getOptional(ss.sweetSpotType());
+        Optional<Supplier<? extends AbstractSweetSpotBehaviour>> behaviour = Minecraft.getInstance().level.registryAccess().lookupOrThrow(StarcatcherLite.SWEETSPOT_BEHAVIOUR).getOptional(ss.sweetSpotType());
 
         //if sweet spot type is registered then continue, otherwise set as removed
         if (behaviour.isPresent())

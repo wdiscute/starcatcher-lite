@@ -4,7 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.wdiscute.starcatcher_lite.minigame.ActiveSweetSpot;
 import com.wdiscute.starcatcher_lite.minigame.FishingMinigameScreen;
 import com.wdiscute.utils.ScreenUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import org.joml.Matrix3x2fStack;
 
 public abstract class AbstractSweetSpotBehaviour
 {
@@ -39,11 +40,11 @@ public abstract class AbstractSweetSpotBehaviour
     {
     }
 
-    public void renderForeground(GuiGraphics guiGraphics, float partialTick, int width, int height, FishingMinigameScreen instance, ActiveSweetSpot ass)
+    public void renderForeground(GuiGraphicsExtractor guiGraphics, float partialTick, int width, int height, FishingMinigameScreen instance, ActiveSweetSpot ass)
     {
     }
 
-    public void render(GuiGraphics guiGraphics, PoseStack poseStack, float partialTick, FishingMinigameScreen instance, ActiveSweetSpot ass)
+    public void render(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack poseStack, float partialTick, FishingMinigameScreen instance, ActiveSweetSpot ass)
     {
         if (ass.removed) return;
 

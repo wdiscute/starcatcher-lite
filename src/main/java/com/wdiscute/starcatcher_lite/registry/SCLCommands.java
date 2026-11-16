@@ -15,8 +15,8 @@ public interface SCLCommands
 {
     static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context)
     {
-        dispatcher.register(Commands.literal("starcatcher")
-                .requires(sourceStack -> sourceStack.hasPermission(2))
+        dispatcher.register(Commands.literal("starcatcher_lite")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
 
                 //starcatcher simulate_fish starcatcher:aurora
                 .then(Commands.literal("simulate_fish")
@@ -24,7 +24,7 @@ public interface SCLCommands
                                 .executes(c ->
                                         startMinigameFromItem(
                                                 c.getSource().getPlayerOrException(),
-                                                ItemArgument.getItem(c, "item").createItemStack(1, false)
+                                                ItemArgument.getItem(c, "item").createItemStack(1)
                                         )
                                 )
                         )

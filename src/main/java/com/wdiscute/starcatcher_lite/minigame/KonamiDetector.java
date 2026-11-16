@@ -33,9 +33,9 @@ public class KonamiDetector
                 SCLConfig.DEBUG_MINIGAME.set(!SCLConfig.DEBUG_MINIGAME.get());
                 SCLConfig.DEBUG_MINIGAME.save();
                 if (SCLConfig.DEBUG_MINIGAME.get())
-                    Minecraft.getInstance().player.displayClientMessage(Component.literal("hackermans mode activated"), true);
+                    Minecraft.getInstance().player.sendOverlayMessage(Component.literal("hackermans mode activated"));
                 else
-                    Minecraft.getInstance().player.displayClientMessage(Component.literal("hackermans mode deactivated"), true);
+                    Minecraft.getInstance().player.sendOverlayMessage(Component.literal("hackermans mode deactivated"));
 
                 progress = 0;
             }

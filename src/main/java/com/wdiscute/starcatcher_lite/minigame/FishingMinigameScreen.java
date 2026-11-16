@@ -1,9 +1,6 @@
 package com.wdiscute.starcatcher_lite.minigame;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import com.wdiscute.starcatcher_lite.*;
 import com.wdiscute.starcatcher_lite.fish.Difficulty;
 import com.wdiscute.starcatcher_lite.fish.Textures;
@@ -12,9 +9,11 @@ import com.wdiscute.starcatcher_lite.data.network.SCLSBFishingCompletedPayload;
 import com.wdiscute.utils.ScreenUtils;
 import com.wdiscute.utils.Utils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -24,10 +23,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.network.PacketDistributor;
-import org.joml.Quaternionf;
-import org.joml.Vector2d;
+import org.joml.Matrix3x2fStack;
+import org.joml.Vector2f;
 
 import java.util.*;
 
@@ -99,7 +98,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
 
         Textures textures = itemStack.getItem().builtInRegistryHolder().getData(SCLDataMaps.MINIGAME_TEXTURES);
 
-        if(textures == null)
+        if (textures == null)
             textures = Textures.DEFAULT;
 
         tank = textures.tank();
@@ -170,24 +169,24 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     }
 
     @Override
-    public void renderBackground(GuiGraphics g, int mouseX, int mouseY, float partialTickNeo)
+    public void extractBackground(GuiGraphicsExtractor g, int mouseX, int mouseY, float a)
     {
         if (renderBlur)
-            super.renderBackground(g, mouseX, mouseY, partialTickNeo);
+            super.extractBackground(g, mouseX, mouseY, a);
 
-        final float partialTick = PartialTickHelper.INSTANCE.getPartialTicks(minecraft.level);
+        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(true);
 
-        PoseStack poseStack = g.pose();
+        Matrix3x2fStack poseStack = g.pose();
         partial = partialTick;
 
-        poseStack.pushPose();
-        poseStack.translate(width >> 1, height >> 1, 0);
+        poseStack.pushMatrix();
+        poseStack.translate(width >> 1, height >> 1);
 
-        poseStack.translate(SCLConfig.MINIGAME_X_OFFSET.get(), SCLConfig.MINIGAME_Y_OFFSET.get(), 0);
+        poseStack.translate((float) SCLConfig.MINIGAME_X_OFFSET.getAsDouble(), (float) SCLConfig.MINIGAME_Y_OFFSET.getAsDouble());
 
-        poseStack.scale(((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()), ((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()), 1);
+        poseStack.scale(((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()), ((float) SCLConfig.MINIGAME_RENDER_SCALE.getAsDouble()));
 
-        poseStack.translate(-width >> 1, -height >> 1, 0);
+        poseStack.translate(-width >> 1, -height >> 1);
 
         int centerX = width / 2;
         int centerY = height / 2;
@@ -230,7 +229,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         rod.render(g, centerX - 118, centerY - 116,
                 16, 0, 96, 112);
 
-        progressSmooth += ((progress - progressSmooth) / 6) * partialTickNeo;
+        progressSmooth += ((progress - progressSmooth) / 6) * a;
 
         float yoffset = progressSmooth == 0 ? 0 : (progressSmooth / (float) hp * 77);
 
@@ -240,11 +239,11 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
                 16, (int) (112 - yoffset + 5));
 
         //item being fished
-        poseStack.pushPose();
-        poseStack.translate(0, -yoffset, 0);
+        poseStack.pushMatrix();
+        poseStack.translate(0, -yoffset);
 
         ScreenUtils.item(g, item, centerX - 8 - 100, centerY - 8 + 35);
-        poseStack.popPose();
+        poseStack.popMatrix();
 
         //render sweet spots foreground
         activeSweetSpots.forEach(ass -> ass.behaviour.renderForeground(g, partialTick, width, height, this, ass));
@@ -252,7 +251,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         //render particles
         hitParticles.forEach(p -> p.render(g, width, height));
 
-        poseStack.popPose();
+        poseStack.popMatrix();
 
         if (SCLConfig.DEBUG_MINIGAME.get())
         {
@@ -317,97 +316,93 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         }
     }
 
-    public void renderSweetSpot(ActiveSweetSpot ass, GuiGraphics guiGraphics, float partialTick, PoseStack poseStack)
+    public void renderSweetSpot(ActiveSweetSpot ass, GuiGraphicsExtractor guiGraphics, float partialTick, Matrix3x2fStack poseStack)
     {
         float centerX = (float) width / 2;
         float centerY = (float) height / 2;
 
-        poseStack.pushPose();
+        poseStack.pushMatrix();
 
-        poseStack.translate(centerX, centerY, 0);
+        poseStack.translate(centerX, centerY);
 
-        poseStack.rotateAround(Axis.ZP.rotationDegrees(ass.pos + (partialTick * ass.movingRate) * ass.currentRotation), 0, 0, 0);
+        poseStack.rotate((float) Math.toRadians(ass.pos + (partialTick * ass.movingRate) * ass.currentRotation));
 
         ass.behaviour.render(guiGraphics, poseStack, partialTick, this, ass);
 
-        poseStack.popPose();
+        poseStack.popMatrix();
     }
 
-    public void renderKimbeMarker(GuiGraphics g)
+    public void renderKimbeMarker(GuiGraphicsExtractor g)
     {
-        PoseStack poseStack = g.pose();
-        poseStack.pushPose();
+        Matrix3x2fStack poseStack = g.pose();
+        poseStack.pushMatrix();
 
         float centerX = (float) width / 2;
         float centerY = (float) height / 2;
 
-        poseStack.translate(centerX, centerY, 0);
-        poseStack.mulPose(new Quaternionf().rotateZ((float) Math.toRadians(kimbeMarkerPos)));
-        poseStack.translate(-centerX, -centerY, 0);
-
-        RenderSystem.enableBlend();
+        poseStack.translate(centerX, centerY);
+        poseStack.rotate((float) Math.toRadians(kimbeMarkerPos));
+        poseStack.translate(-centerX, -centerY);
 
         ScreenUtils.outline(g, (int) centerX, (int) centerY - 34, 2, 34, kimbeMarkerColor);
 
-        RenderSystem.disableBlend();
-
-        poseStack.popPose();
+        poseStack.popMatrix();
     }
 
-    public void renderHandle(GuiGraphics guiGraphics, PoseStack poseStack, float partialTickDONOTUSE)
+    public void renderHandle(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack poseStack, float partialTickDONOTUSE)
     {
-        poseStack.pushPose();
+        poseStack.pushMatrix();
 
         float centerX = (float) width / 2;
         float centerY = (float) height / 2;
 
-        poseStack.translate(centerX, centerY, 0);
+        poseStack.translate(centerX, centerY);
 
         float v = handlePos + ((handleSpeed * partial) * currentRotation);
-        poseStack.mulPose(Axis.ZP.rotationDegrees(v));
+        poseStack.rotate((float) Math.toRadians(v));
 
-        poseStack.translate(0, -16, 0);
+        poseStack.translate(0, -16);
 
         handle.render(guiGraphics, -16, -32);
 
-        poseStack.translate(0, 16, 0);
+        poseStack.translate(0, 16);
 
-        poseStack.popPose();
+        poseStack.popMatrix();
     }
 
     @Override
-    public boolean keyReleased(int keyCode, int scanCode, int keyModifiers)
+    public boolean keyReleased(KeyEvent event)
     {
-        if (keyCode == SCLKeymappings.MINIGAME_HIT.getKey().getValue())
+        if (event.key() == SCLKeymappings.MINIGAME_HIT.getKey().getValue())
         {
             isHoldingKey = false;
             holdingTicks = 0;
         }
 
-        return super.keyReleased(keyCode, scanCode, keyModifiers);
+        return super.keyReleased(event);
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button)
+    public boolean mouseReleased(MouseButtonEvent event)
     {
         isHoldingMouse = false;
         holdingTicks = 0;
-        return super.mouseReleased(mouseX, mouseY, button);
+        return super.mouseReleased(event);
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button)
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick)
     {
         inputPressed();
         isHoldingMouse = true;
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(event, doubleClick);
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int keyModifiers)
+    public boolean keyPressed(KeyEvent event)
     {
         //closes when pressing E unless keybind is set to E
-        InputConstants.Key mouseKey = InputConstants.getKey(keyCode, scanCode);
+        InputConstants.Key mouseKey = InputConstants.getKey(event);
         if (this.minecraft.options.keyInventory.isActiveAndMatches(mouseKey) && !SCLKeymappings.MINIGAME_HIT.getKey().equals(mouseKey))
         {
             //play failed sound
@@ -423,7 +418,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
             isHoldingKey = true;
         }
 
-        return super.keyPressed(keyCode, scanCode, keyModifiers);
+        return super.keyPressed(event);
     }
 
     public void inputPressed()
@@ -560,7 +555,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
             if (progressSmooth > hp)
             {
                 //if completed treasure minigame, or is a perfect catch with the mossy hook
-                PacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(true));
+                ClientPacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(true));
                 this.onClose();
             }
         }
@@ -571,7 +566,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     @Override
     public void onClose()
     {
-        PacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(false));
+        ClientPacketDistributor.sendToServer(new SCLSBFishingCompletedPayload(false));
         this.minecraft.popGuiLayer();
     }
 
@@ -584,7 +579,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
         {
             hitParticles.add(
                     new HitFakeParticle(xPos, yPos,
-                            new Vector2d(Utils.r.nextFloat() * 2 - 1, Utils.r.nextFloat() * 2 - 1),
+                            new Vector2f(Utils.r.nextFloat() * 2 - 1, Utils.r.nextFloat() * 2 - 1),
                             color
                     ));
         }

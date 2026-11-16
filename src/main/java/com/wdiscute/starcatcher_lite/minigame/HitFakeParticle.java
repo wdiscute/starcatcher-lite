@@ -1,9 +1,9 @@
 package com.wdiscute.starcatcher_lite.minigame;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.wdiscute.utils.ScreenUtils;
-import net.minecraft.client.gui.GuiGraphics;
-import org.joml.Vector2d;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import org.joml.Matrix3x2fStack;
+import org.joml.Vector2f;
 
 import java.util.Random;
 
@@ -13,28 +13,28 @@ public class HitFakeParticle
 
     public int color;
 
-    public Vector2d pos;
+    public Vector2f pos;
     public double speed;
-    public Vector2d vecDirection;
+    public Vector2f vecDirection;
     public int lifetime;
     public int maxLifetime;
 
-    public void render(GuiGraphics guiGraphics, int width, int height)
+    public void render(GuiGraphicsExtractor guiGraphics, int width, int height)
     {
-        PoseStack poseStack = guiGraphics.pose();
-        poseStack.pushPose();
-        poseStack.translate(pos.x, pos.y, 0);
+        Matrix3x2fStack poseStack = guiGraphics.pose();
+        poseStack.pushMatrix();
+        poseStack.translate(pos.x, pos.y);
 
         ScreenUtils.fill(guiGraphics, width / 2, height / 2, 1, 1, color);
 
-        poseStack.popPose();
+        poseStack.popMatrix();
     }
 
-    public HitFakeParticle(int x, int y, Vector2d vec, int color)
+    public HitFakeParticle(int x, int y, Vector2f vec, int color)
     {
         this.color = color;
 
-        pos = new Vector2d(x + random.nextFloat() * 10 - 5, y + random.nextFloat() * 10 - 5);
+        pos = new Vector2f(x + random.nextFloat() * 10 - 5, y + random.nextFloat() * 10 - 5);
         this.vecDirection = vec.normalize();
         this.speed = 0.2 + random.nextFloat() / 3;
         this.maxLifetime = (int) (5 + random.nextFloat() * 20);
@@ -46,7 +46,7 @@ public class HitFakeParticle
     {
         lifetime++;
 
-        pos = pos.add(new Vector2d(vecDirection.x * speed, vecDirection.y * speed));
+        pos = pos.add(new Vector2f((float) (vecDirection.x * speed), (float) (vecDirection.y * speed)));
 
         return lifetime > maxLifetime;
     }

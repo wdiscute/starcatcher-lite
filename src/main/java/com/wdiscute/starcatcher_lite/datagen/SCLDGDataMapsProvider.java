@@ -6,7 +6,7 @@ import com.wdiscute.starcatcher_lite.registry.SCLDataMaps;
 import com.wdiscute.utils.Utils;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
@@ -48,7 +48,7 @@ public class SCLDGDataMapsProvider extends DataMapProvider
         addNether(textures, Utils.rl("netherdepthsupgrade", "eyeball_fish"));
     }
 
-    public void addNether(Builder<Textures, Item> builder, ResourceLocation id)
+    public void addNether(Builder<Textures, Item> builder, Identifier id)
     {
         if (id.getNamespace().equals("minecraft"))
             builder.add(id, Textures.DEFAULT.withTank(Textures.NETHER), false);

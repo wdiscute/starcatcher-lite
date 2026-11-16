@@ -21,6 +21,7 @@ public class SCLClientEvents
     @SubscribeEvent
     public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event)
     {
+        event.registerCategory(SCLKeymappings.CATEGORY);
         event.register(SCLKeymappings.MINIGAME_HIT);
     }
 }

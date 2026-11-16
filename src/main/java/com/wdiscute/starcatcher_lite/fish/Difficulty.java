@@ -9,7 +9,7 @@ import com.wdiscute.utils.ScreenUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +65,7 @@ public record Difficulty(
     );
 
     public record SweetSpot(
-            ResourceLocation sweetSpotType,
+            Identifier sweetSpotType,
             ScreenUtils.Image texturePath,
             int size,
             int reward,
@@ -75,7 +75,7 @@ public record Difficulty(
             int particleColor
     )
     {
-        public SweetSpot(ResourceLocation sweetSpotType, ScreenUtils.Image texturePath, int size, int reward, int particleColor)
+        public SweetSpot(Identifier sweetSpotType, ScreenUtils.Image texturePath, int size, int reward, int particleColor)
         {
             this(sweetSpotType, texturePath, size, reward, false, 0, 0, particleColor);
         }
@@ -119,7 +119,7 @@ public record Difficulty(
 
         public static final Codec<SweetSpot> CODEC = RecordCodecBuilder.create(instance ->
                 instance.group(
-                        ResourceLocation.CODEC.fieldOf("sweetspot_type").forGetter(SweetSpot::sweetSpotType),
+                        Identifier.CODEC.fieldOf("sweetspot_type").forGetter(SweetSpot::sweetSpotType),
                         ScreenUtils.Image.codecFixedSize(96, 96).fieldOf("texture_path").forGetter(SweetSpot::texturePath),
                         Codec.INT.fieldOf("hitbox_size_in_pixels").forGetter(SweetSpot::size),
                         Codec.INT.fieldOf("reward").forGetter(SweetSpot::reward),
@@ -132,7 +132,7 @@ public record Difficulty(
         public static final Codec<List<SweetSpot>> LIST_CODEC = CODEC.listOf();
 
         public static final StreamCodec<FriendlyByteBuf, SweetSpot> STREAM_CODEC = ExtraComposites.composite(
-                ResourceLocation.STREAM_CODEC, SweetSpot::sweetSpotType,
+                Identifier.STREAM_CODEC, SweetSpot::sweetSpotType,
                 ScreenUtils.Image.STREAM_CODEC, SweetSpot::texturePath,
                 ByteBufCodecs.INT, SweetSpot::size,
                 ByteBufCodecs.INT, SweetSpot::reward,

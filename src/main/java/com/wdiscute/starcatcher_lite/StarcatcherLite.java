@@ -5,8 +5,8 @@ import com.wdiscute.starcatcher_lite.registry.sweetspotbehaviour.AbstractSweetSp
 import com.wdiscute.starcatcher_lite.registry.*;
 import com.wdiscute.utils.Utils;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -33,7 +33,7 @@ public class StarcatcherLite
             .defaultKey(StarcatcherLite.rl("normal"))
             .create();
 
-    public static ResourceLocation rl(String s)
+    public static Identifier rl(String s)
     {
         return Utils.rl(StarcatcherLite.MOD_ID, s);
     }

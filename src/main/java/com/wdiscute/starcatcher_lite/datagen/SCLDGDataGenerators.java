@@ -11,13 +11,13 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 public class SCLDGDataGenerators
 {
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event)
+    public static void gatherData(GatherDataEvent.Client event)
     {
         DataGenerator gen = event.getGenerator();
 
         PackOutput output = gen.getPackOutput();
 
         //data maps
-        gen.addProvider(event.includeServer(), new SCLDGDataMapsProvider(output, event.getLookupProvider()));
+        gen.addProvider(true, new SCLDGDataMapsProvider(output, event.getLookupProvider()));
     }
 }
