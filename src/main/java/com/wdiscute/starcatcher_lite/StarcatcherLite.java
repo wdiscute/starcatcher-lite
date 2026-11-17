@@ -45,7 +45,7 @@ public class StarcatcherLite
         SCLAttributes.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.CLIENT, SCLConfig.SPEC);
-        modContainer.registerConfig(ModConfig.Type.SERVER, SCLConfig.SPEC_SERVER);
+        modContainer.registerConfig(ModConfig.Type.SYNCED, SCLConfig.SPEC_SERVER);
     }
 
     @Mod(value = StarcatcherLite.MOD_ID, dist = Dist.CLIENT)

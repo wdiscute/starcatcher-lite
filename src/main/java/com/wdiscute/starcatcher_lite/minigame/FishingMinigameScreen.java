@@ -21,6 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
@@ -425,7 +426,7 @@ public class FishingMinigameScreen extends Screen implements GuiEventListener
     {
         if (gracePeriod > 0) gracePeriod = 0;
 
-        Minecraft.getInstance().player.swing(handToSwing, true);
+        Minecraft.getInstance().player.swing(handToSwing, SwingAnimation.DEFAULT, true);
 
         boolean hitSomething = false;
 

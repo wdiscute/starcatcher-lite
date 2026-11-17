@@ -18,6 +18,6 @@ public class SCLDGDataGenerators
         PackOutput output = gen.getPackOutput();
 
         //data maps
-        gen.addProvider(true, new SCLDGDataMapsProvider(output, event.getLookupProvider()));
+        gen.addProvider(true, new SCLDGDataMapsProvider(output, event.getWorldLookupProvider()));
     }
 }
